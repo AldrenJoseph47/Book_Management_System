@@ -1,0 +1,58 @@
+/* src/styles/Pagination.css or src/components/Pagination.css */
+
+/* Center the pagination container */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Space between each button */
+  margin-top: 20px; /* Adjust the margin to your liking */
+}
+
+/* General button styling */
+.pagination-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Width for the buttons */
+  height: 40px; /* Height for the buttons */
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background-color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, border-color 0.3s;
+  cursor: pointer;
+}
+
+/* Hover effect for buttons */
+.pagination-button:hover {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+/* Active button style */
+.pagination-button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+/* Style for the pagination arrow icons */
+.pagination-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor; /* Makes sure the icons inherit the button color */
+}
+
+/* Disabled state styling */
+.pagination-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Style when not active */
+.pagination-button:not(.active) {
+  background-color: #f8f9fa;
+}

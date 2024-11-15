@@ -1,0 +1,138 @@
+import React, { useEffect, useState } from 'react';
+import { getAllBooks, deleteListing } from '../utils/api';
+import { Link } from 'react-router-dom';
+import './Pagination.css'; // Import the CSS file for pagination styles
+
+const ListBooksPage = () => {
+  const [books, setBooks] = useState([]); // Initialize as an empty array
+  const [currentPage, setCurrentPage] = useState(1); // Current page
+  const [booksPerPage] = useState(5); // Number of books per page
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const data = await getAllBooks();
+        console.log('Fetched Books Data:', data); // Log data to check structure
+        if (data && Array.isArray(data.listings)) {
+          setBooks(data.listings); // Ensure that data is in the expected format
+        } else {
+          console.warn('Unexpected data structure:', data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch books:', error);
+      }
+    };
+    fetchBooks();
+  }, []);
+
+  // Pagination logic
+  const indexOfLastBook = currentPage * booksPerPage;
+  const indexOfFirstBook = indexOfLastBook - booksPerPage;
+  const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteListing(id);
+      setBooks(books.filter((book) => book._id !== id)); // Remove deleted book from state
+    } catch (error) {
+      console.error('Failed to delete book:', error);
+    }
+  };
+
+  // Change page handler
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  // Total pages
+  const totalPages = Math.ceil(books.length / booksPerPage);
+
+  // Safely render books only if they are available
+  return (
+    <div>
+      <h1>List of Books</h1>
+      {currentBooks.length > 0 ? (
+        <ul className="list-group">
+          {currentBooks.map((book) => (
+            <li key={book._id} className="list-group-item">
+              <h5>{book.title}</h5>
+              <p>{book.author}</p>
+
+              {/* Render the book's cover image */}
+              {book.cover_image_url && (
+                <img
+                  src={book.cover_image_url}
+                  alt={`Cover of ${book.title}`}
+                  style={{ width: '100px', height: '150px', objectFit: 'cover' }}
+                />
+              )}
+
+              <Link to={`/view-book/${book._id}`} className="btn btn-primary me-2">
+                View Details
+              </Link>
+              <button onClick={() => handleDelete(book._id)} className="btn btn-danger">
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No books available.</p>
+      )}
+
+      {/* Pagination Buttons */}
+      <div className="pagination-container">
+        <button
+          title="previous"
+          type="button"
+          className="pagination-button"
+          onClick={() => currentPage > 1 && paginate(currentPage - 1)} // Previous button
+        >
+          <svg
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="pagination-icon"
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        {/* Page Buttons */}
+        {[...Array(totalPages)].map((_, index) => (
+          <button
+            key={index + 1}
+            type="button"
+            className={`pagination-button ${index + 1 === currentPage ? 'active' : ''}`}
+            title={`Page ${index + 1}`}
+            onClick={() => paginate(index + 1)}
+          >
+            {index + 1}
+          </button>
+        ))}
+
+        <button
+          title="next"
+          type="button"
+          className="pagination-button"
+          onClick={() => currentPage < totalPages && paginate(currentPage + 1)} // Next button
+        >
+          <svg
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="pagination-icon"
+          >
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default ListBooksPage;

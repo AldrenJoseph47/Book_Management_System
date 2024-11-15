@@ -1,0 +1,40 @@
+/* Navbar.css */
+
+.navbar {
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .navbar-brand:hover {
+    color: #0056b3;
+    text-decoration: none;
+  }
+  
+  .navbar-nav {
+    margin-left: auto; /* Aligns the nav links to the right */
+  }
+  
+  .navbar-nav .nav-item .nav-link {
+    color: #343a40;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s; /* Smooth hover effect */
+    padding: 8px 16px; /* Adds padding to links */
+    border-radius: 4px; /* Rounded corners for hover effect */
+  }
+  
+  .navbar-nav .nav-item .nav-link:hover {
+    color: #ffffff;
+    background-color: #007bff; /* Background color on hover */
+  }
+  
+  .navbar-nav .nav-item .nav-link.active {
+    color: #ffffff;
+    background-color: #007bff; /* Background for active link */
+    font-weight: 600;
+  }
+  
