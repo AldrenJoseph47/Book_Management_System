@@ -1,0 +1,86 @@
+/* Container styling for the article */
+.article-container {
+  background-color: #FEFAE0; /* Light yellow background */
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+/* Title styling */
+.article-header h1 {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #606C38; /* Dark green */
+  margin-bottom: 1rem;
+}
+
+/* Article meta (author info and post details) */
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #888;
+}
+
+/* Author info section */
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.author-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #606C38; /* Dark green border around author image */
+}
+
+/* Article body content */
+.article-body {
+  margin-top: 1.5rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Footer styling */
+.article-footer {
+  margin-top: 2rem;
+  border-top: 1px dashed #ddd;
+  padding-top: 1rem;
+}
+
+/* Styling for tags */
+.article-tags .tag {
+  display: inline-block;
+  margin-right: 0.5rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 12px;
+  background-color: #606C38; /* Dark green background for tags */
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Related posts section */
+.related-posts h4 {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  color: #606C38; /* Dark green for heading */
+}
+
+.related-posts ul {
+  list-style: none;
+  padding-left: 1.25rem;
+}
+
+/* Related post links */
+.related-link {
+  color: #007bff; /* Blue color for related links */
+  text-decoration: none;
+}
+
+.related-link:hover {
+  text-decoration: underline;
+}

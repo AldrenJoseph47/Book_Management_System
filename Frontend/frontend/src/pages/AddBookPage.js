@@ -1,7 +1,7 @@
-// src/pages/AddBookPage.js
 import React, { useState } from 'react';
 import { addNewListing } from '../utils/api';
-import { useNavigate } from 'react-router-dom'; // Updated import
+import { useNavigate } from 'react-router-dom';
+import './AddBookPage.css'; // Import the CSS for styling
 
 const AddBookPage = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +12,7 @@ const AddBookPage = () => {
     ISBN: '',
     cover_image_url: '',
   });
-  const navigate = useNavigate(); // Updated to useNavigate
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -25,80 +25,82 @@ const AddBookPage = () => {
     e.preventDefault();
     try {
       await addNewListing(formData);
-      navigate('/list-books'); // Updated to use navigate
+      navigate('/list-books');
     } catch (error) {
       console.error('Failed to add book:', error);
     }
   };
 
   return (
-    <div>
-      <h1>Add a New Book</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Title</label>
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            className="form-control"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Author</label>
-          <input
-            type="text"
-            name="author"
-            value={formData.author}
-            onChange={handleChange}
-            className="form-control"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Genre</label>
-          <input
-            type="text"
-            name="genre"
-            value={formData.genre}
-            onChange={handleChange}
-            className="form-control"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Price</label>
-          <input
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            className="form-control"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">ISBN</label>
-          <input
-            type="text"
-            name="ISBN"
-            value={formData.ISBN}
-            onChange={handleChange}
-            className="form-control"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Cover Image URL</label>
-          <input
-            type="text"
-            name="cover_image_url"
-            value={formData.cover_image_url}
-            onChange={handleChange}
-            className="form-control"
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Add Book
-        </button>
-      </form>
+    <div className="add-book-container">
+      <div className="add-book-card">
+        <h1 className="add-book-title">Add a New Book</h1>
+        <form onSubmit={handleSubmit} className="add-book-form">
+          <div className="form-group">
+            <label>Title</label>
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label>Author</label>
+            <input
+              type="text"
+              name="author"
+              value={formData.author}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label>Genre</label>
+            <input
+              type="text"
+              name="genre"
+              value={formData.genre}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label>Price</label>
+            <input
+              type="number"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label>ISBN</label>
+            <input
+              type="text"
+              name="ISBN"
+              value={formData.ISBN}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label>Cover Image URL</label>
+            <input
+              type="text"
+              name="cover_image_url"
+              value={formData.cover_image_url}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <button type="submit" className="add-book-btn">
+            Add Book
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

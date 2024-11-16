@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
 import { getListingById, updateListing, deleteListing } from '../utils/api';
+import './ListingDetailPage.css';
 
 const ListingDetailPage = () => {
   const [book, setBook] = useState(null);

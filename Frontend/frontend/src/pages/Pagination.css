@@ -1,58 +1,69 @@
-/* src/styles/Pagination.css or src/components/Pagination.css */
+/* Pagination.css */
 
-/* Center the pagination container */
+/* Book Cards Container */
+.book-cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 20px; /* Space between the cards */
+  margin-bottom: 20px;
+}
+
+/* Individual Book Card */
+.book-card {
+  background-color: #FEFAE0; /* Light yellow background */
+  border: 1px solid #606C38; /* Darker green border */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.book-card h5 {
+  color: #606C38; /* Dark green */
+}
+
+.book-card p {
+  color: #283618; /* Darker green */
+}
+
+.book-cover {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.book-card .btn {
+  margin-top: 10px;
+}
+
 .pagination-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 10px; /* Space between each button */
-  margin-top: 20px; /* Adjust the margin to your liking */
+  gap: 10px;
+  margin-top: 20px;
 }
 
-/* General button styling */
 .pagination-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px; /* Width for the buttons */
-  height: 40px; /* Height for the buttons */
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  background-color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.3s, border-color 0.3s;
+  background-color: #606C38;
+  color: #FEFAE0;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-/* Hover effect for buttons */
-.pagination-button:hover {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
-}
-
-/* Active button style */
 .pagination-button.active {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
+  background-color: #283618; /* Darker green for active page */
 }
 
-/* Style for the pagination arrow icons */
+.pagination-button:hover {
+  background-color: #283618;
+  color: #FEFAE0;
+}
+
 .pagination-icon {
-  width: 20px;
-  height: 20px;
-  fill: currentColor; /* Makes sure the icons inherit the button color */
-}
-
-/* Disabled state styling */
-.pagination-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-/* Style when not active */
-.pagination-button:not(.active) {
-  background-color: #f8f9fa;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
 }

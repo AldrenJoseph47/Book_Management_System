@@ -6,7 +6,7 @@ import './Pagination.css'; // Import the CSS file for pagination styles
 const ListBooksPage = () => {
   const [books, setBooks] = useState([]); // Initialize as an empty array
   const [currentPage, setCurrentPage] = useState(1); // Current page
-  const [booksPerPage] = useState(5); // Number of books per page
+  const [booksPerPage] = useState(6); // Number of books per page (6 books per page)
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -50,9 +50,9 @@ const ListBooksPage = () => {
     <div>
       <h1>List of Books</h1>
       {currentBooks.length > 0 ? (
-        <ul className="list-group">
+        <div className="book-cards-container">
           {currentBooks.map((book) => (
-            <li key={book._id} className="list-group-item">
+            <div key={book._id} className="book-card">
               <h5>{book.title}</h5>
               <p>{book.author}</p>
 
@@ -61,19 +61,19 @@ const ListBooksPage = () => {
                 <img
                   src={book.cover_image_url}
                   alt={`Cover of ${book.title}`}
-                  style={{ width: '100px', height: '150px', objectFit: 'cover' }}
+                  className="book-cover"
                 />
               )}
 
-              <Link to={`/view-book/${book._id}`} className="btn btn-primary me-2">
-                View Details
-              </Link>
-              <button onClick={() => handleDelete(book._id)} className="btn btn-danger">
-                Delete
-              </button>
-            </li>
+                  <Link to={`/view-book/${book._id}`} className="btn btn-primary me-2">
+                    View Details
+                  </Link>
+                  <button onClick={() => handleDelete(book._id)} className="btn btn-danger">
+                    Delete
+                  </button>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : (
         <p>No books available.</p>
       )}
