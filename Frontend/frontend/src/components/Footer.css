@@ -29,14 +29,14 @@
     height: 48px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content:center;;
     background-color: #1d1d1d; /* Yellow background for the logo */
     border-radius: 50%;
   }
   
   .logo {
-    width: 24px;
-    height: 24px;
+    width: 48px;
+    height: 48px;
   }
   
   .footer-links,

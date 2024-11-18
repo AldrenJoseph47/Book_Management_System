@@ -8,13 +8,18 @@
     --main-color: #283618;
   
     display: flex;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), 
+              url('../logo/wallpaper3.jpg');
+    background-size: cover;
     flex-direction: column;
     min-height: 18vh; /* Ensures the wrapper spans the full height of the viewport */
     align-items: center;
-    padding-bottom: 50px;
     justify-content: center; /* Centers the card vertically */
     position: relative;
     background-color: var(--bg-color); /* Page background color */
+    padding-bottom: 450px;
+    padding-top: 20px;
+
   }
   
   /* Centering and positioning adjustments for the card */
@@ -234,4 +239,9 @@
     box-shadow: 0px 0px var(--main-color);
     transform: translate(3px, 3px);
   }
-  
+  /* .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 400px;
+  } */

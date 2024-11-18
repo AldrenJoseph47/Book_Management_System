@@ -14,7 +14,7 @@
   border: 1px solid #606C38; /* Darker green border */
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 3px 3px 0px rgb(60, 66, 38);
   text-align: center;
 }
 
@@ -35,6 +35,12 @@
 
 .book-card .btn {
   margin-top: 10px;
+  background-color: #606C38; /* Dark green */
+  color: #FEFAE0; /* Light yellow text */
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-right: 20px;
 }
 
 .pagination-container {

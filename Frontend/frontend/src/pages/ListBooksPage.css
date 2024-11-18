@@ -1,0 +1,21 @@
+/* ListBooksPage.css */
+
+.search-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search-bar {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  .search-bar:focus {
+    border-color: #283618; /* Highlight with your primary color */
+  }

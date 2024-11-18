@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { getAllBooks, deleteListing } from '../utils/api';
 import { Link } from 'react-router-dom';
 import './Pagination.css'; // Import the CSS file for pagination styles
+import './ListBooksPage.css'; // Import custom CSS for the page styling
 
 const ListBooksPage = () => {
   const [books, setBooks] = useState([]); // Initialize as an empty array
+  const [filteredBooks, setFilteredBooks] = useState([]); // State for filtered books based on search
   const [currentPage, setCurrentPage] = useState(1); // Current page
   const [booksPerPage] = useState(6); // Number of books per page (6 books per page)
+  const [searchTerm, setSearchTerm] = useState(''); // Search term state
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -15,6 +18,7 @@ const ListBooksPage = () => {
         console.log('Fetched Books Data:', data); // Log data to check structure
         if (data && Array.isArray(data.listings)) {
           setBooks(data.listings); // Ensure that data is in the expected format
+          setFilteredBooks(data.listings); // Initialize the filtered books
         } else {
           console.warn('Unexpected data structure:', data);
         }
@@ -25,15 +29,28 @@ const ListBooksPage = () => {
     fetchBooks();
   }, []);
 
+  // Filter books based on the search term
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchTerm(query);
+
+    const filtered = books.filter((book) =>
+      book.title.toLowerCase().includes(query) || book.author.toLowerCase().includes(query)
+    );
+    setFilteredBooks(filtered);
+    setCurrentPage(1); // Reset to page 1 when a new search is performed
+  };
+
   // Pagination logic
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
-  const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
+  const currentBooks = filteredBooks.slice(indexOfFirstBook, indexOfLastBook);
 
   const handleDelete = async (id) => {
     try {
       await deleteListing(id);
       setBooks(books.filter((book) => book._id !== id)); // Remove deleted book from state
+      setFilteredBooks(filteredBooks.filter((book) => book._id !== id)); // Update filtered books as well
     } catch (error) {
       console.error('Failed to delete book:', error);
     }
@@ -43,12 +60,23 @@ const ListBooksPage = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // Total pages
-  const totalPages = Math.ceil(books.length / booksPerPage);
+  const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
 
-  // Safely render books only if they are available
   return (
     <div>
       <h1>List of Books</h1>
+
+      {/* Search Bar */}
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search by title or author..."
+          value={searchTerm}
+          onChange={handleSearch}
+          className="search-bar"
+        />
+      </div>
+
       {currentBooks.length > 0 ? (
         <div className="book-cards-container">
           {currentBooks.map((book) => (
@@ -65,12 +93,12 @@ const ListBooksPage = () => {
                 />
               )}
 
-                  <Link to={`/view-book/${book._id}`} className="btn btn-primary me-2">
-                    View Details
-                  </Link>
-                  <button onClick={() => handleDelete(book._id)} className="btn btn-danger">
-                    Delete
-                  </button>
+              <Link to={`/view-book/${book._id}`} className="btn btn-primary me-2">
+                View Details
+              </Link>
+              <button onClick={() => handleDelete(book._id)} className="btn btn-danger">
+                Delete
+              </button>
             </div>
           ))}
         </div>
