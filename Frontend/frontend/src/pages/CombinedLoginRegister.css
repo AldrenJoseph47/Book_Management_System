@@ -11,6 +11,7 @@
     flex-direction: column;
     min-height: 18vh; /* Ensures the wrapper spans the full height of the viewport */
     align-items: center;
+    padding-bottom: 50px;
     justify-content: center; /* Centers the card vertically */
     position: relative;
     background-color: var(--bg-color); /* Page background color */

@@ -1,5 +1,6 @@
 import React from 'react';
 import './Article.css';
+import profilePic from '../logo/profilepic.png'; // Correctly import the image
 
 const Article = ({ title, author, date, readTime, views, imageUrl, content, tags, relatedPosts }) => {
   return (
@@ -9,7 +10,7 @@ const Article = ({ title, author, date, readTime, views, imageUrl, content, tags
           <h1>{title}</h1>
           <div className="article-meta">
             <div className="author-info">
-              <img src={imageUrl} alt={`${author}'s profile`} className="author-image" />
+              <img src={profilePic} alt={`${author}'s profile`} className="author-image" />
               <p>{`${author} • ${date}`}</p>
             </div>
             <p>{`${readTime} • ${views} views`}</p>
