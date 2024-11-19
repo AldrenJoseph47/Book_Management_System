@@ -1,6 +1,8 @@
 import React from 'react';
 import './HomePage.css';
 import Article from '../components/Article';
+import Carousel from '../components/Carousel';
+
 
 const HomePage = () => {
   return (
@@ -9,7 +11,7 @@ const HomePage = () => {
         <h1>Welcome to the Book Management App</h1>
         <p>Your one-stop solution for managing your book listings.</p>
       </header>
-
+      <h2>Featured Article</h2>
       <section className="featured-article">
         <Article
           title="Mastering Book Management: Tips & Tricks"
@@ -17,7 +19,6 @@ const HomePage = () => {
           date="November 15, 2024"
           readTime="5 min read"
           views="2,350"
-          imageUrl="https://source.unsplash.com/75x75/?book"
           content="Discover how to organize, update, and manage your book listings effectively using our app. Learn about the best practices, tricks, and tips for seamless book management."
           tags={['BookManagement', 'ReactJS', 'MongoDB']}
           relatedPosts={[
@@ -27,6 +28,9 @@ const HomePage = () => {
           ]}
         />
       </section>
+      <h2>Top Selling Books</h2>
+      <Carousel />
+
     </div>
   );
 };

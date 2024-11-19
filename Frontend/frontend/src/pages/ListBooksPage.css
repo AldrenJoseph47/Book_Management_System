@@ -1,4 +1,11 @@
 /* ListBooksPage.css */
+.container-list-books {
+  background: url('../logo/wallpaper4.jpg');
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  background-size: cover;
+}
 
 .search-container {
     margin-bottom: 20px;
@@ -19,3 +26,15 @@
   .search-bar:focus {
     border-color: #283618; /* Highlight with your primary color */
   }
+  /* Heading Style */
+.container-list-books h1 {
+  font-size: 2.5rem; /* Larger font size for prominence */
+  font-weight: bold; /* Bold font */
+  text-align: center; /* Center align the heading */
+  color: #283618; /* Dark green color to match the theme */
+  text-transform: uppercase; /* Uppercase for emphasis */
+  padding-top: 20px;
+  letter-spacing: 2px; /* Add spacing between letters */
+}
+
+

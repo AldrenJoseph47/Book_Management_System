@@ -4,6 +4,9 @@ html {
   padding: 0;
   height: 100%;
   background-color: #FEFAE0;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 #root {
@@ -16,3 +19,5 @@ html {
 main {
   flex: 1; /* Pushes the footer to the bottom */
 }
+
+  

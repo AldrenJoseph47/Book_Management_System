@@ -63,7 +63,7 @@ const ListBooksPage = () => {
   const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
 
   return (
-    <div>
+    <div className='container-list-books'>
       <h1>List of Books</h1>
 
       {/* Search Bar */}

@@ -3,6 +3,7 @@
 const User = require('../models/userModel');
 const { createToken } = require('../utils/jwtUtils');
 const { hashPassword, comparePassword } = require('../utils/hashUtils');
+const { verifyToken } = require('../utils/jwtUtils'); // Import verifyToken function
 
 // Register a new user
 const register = async (req, res) => {
@@ -79,31 +80,37 @@ const login = async (req, res) => {
     res.end(JSON.stringify({ message: 'Server error', error }));
   }
 };
+
 // Get user data
 const getUserData = async (req, res) => {
   try {
     // Get the token from the Authorization header
     const token = req.headers['authorization']?.split(' ')[1];
     if (!token) {
-      return res.writeHead(401, { 'Content-Type': 'application/json' }).end(JSON.stringify({ message: 'Authorization token is missing' }));
+      return res.writeHead(401, { 'Content-Type': 'application/json' })
+        .end(JSON.stringify({ message: 'Authorization token is missing' }));
     }
 
     // Verify the token
     const decoded = verifyToken(token);
     if (!decoded) {
-      return res.writeHead(401, { 'Content-Type': 'application/json' }).end(JSON.stringify({ message: 'Invalid or expired token' }));
+      return res.writeHead(401, { 'Content-Type': 'application/json' })
+        .end(JSON.stringify({ message: 'Invalid or expired token' }));
     }
 
     // Fetch the user data from the database
     const user = await User.findById(decoded.userId).select('-password'); // Exclude password from the response
     if (!user) {
-      return res.writeHead(404, { 'Content-Type': 'application/json' }).end(JSON.stringify({ message: 'User not found' }));
+      return res.writeHead(404, { 'Content-Type': 'application/json' })
+        .end(JSON.stringify({ message: 'User not found' }));
     }
 
     // Respond with user data
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ user }));
   } catch (error) {
+    // Server error (logging the error for debugging purposes)
+    console.error('Error fetching user data:', error);
     res.writeHead(500, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ message: 'Server error', error }));
   }

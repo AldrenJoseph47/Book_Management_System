@@ -5,7 +5,8 @@ const uri = "mongodb+srv://aldrenjoseph:aldrenjoseph47@faith.y6xji.mongodb.net/b
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(uri); // Removed deprecated options
+    // Connect to MongoDB without the deprecated options
+    await mongoose.connect(uri);
     console.log('MongoDB connected successfully');
   } catch (error) {
     console.error('MongoDB connection error:', error);
@@ -13,3 +14,4 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
+
