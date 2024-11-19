@@ -8,10 +8,12 @@ import ListingDetailPage from './pages/ListingDetailPage';
 import Footer from './components/Footer';
 import CombinedLoginRegister from './pages/CombinedLoginRegister';
 import './App.css';
+import { AuthProvider } from './context/AuthContext';
 
 
 const App = () => {
   return (
+    <AuthProvider>
     <Router>
       <Navbar />
       <div className="container mt-4">
@@ -26,6 +28,7 @@ const App = () => {
       </div>
       <Footer />
     </Router>
+    </AuthProvider>
   );
 };
 

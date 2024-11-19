@@ -8,7 +8,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(localStorage.getItem('token') || '');
 
-  // Check if the user is logged in
   useEffect(() => {
     if (token) {
       fetchUserData();
@@ -17,36 +16,31 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
-  // Function to fetch user data
   const fetchUserData = async () => {
     try {
       const response = await fetch('http://localhost:3000/api/auth/user', {
         headers: {
-          'Authorization': `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
 
-      const data = await response.json();
+      if (!response.ok) throw new Error('User data fetch failed');
 
-      if (data.user) {
-        setUser(data.user);
-      } else {
-        setUser(null);
-      }
+      const data = await response.json();
+      setUser(data.user || null);
     } catch (error) {
+      console.error(error.message);
       setUser(null);
     } finally {
       setLoading(false);
     }
   };
 
-  // Login function
   const login = (token) => {
     localStorage.setItem('token', token);
     setToken(token);
   };
 
-  // Logout function
   const logout = () => {
     localStorage.removeItem('token');
     setToken('');

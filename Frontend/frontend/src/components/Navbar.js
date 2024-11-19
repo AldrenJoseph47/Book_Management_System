@@ -1,9 +1,16 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import './Navbar.css';
 
 const Navbar = () => {
-  const location = useLocation(); // Get the current location to determine the active link
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useContext(AuthContext);
+  const handleLogout = () => {
+    logout(); // Call the logout function from AuthContext
+    navigate('/'); // Redirect to homepage
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light custom-navbar">
@@ -23,31 +30,41 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto"> {/* Pushes links to the right */}
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${location.pathname === '/list-books' ? 'active' : ''}`}
-                to="/list-books"
-              >
-                List Books
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${location.pathname === '/add-book' ? 'active' : ''}`}
-                to="/add-book"
-              >
-                Add Book
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${location.pathname === '/CombinedLoginRegister' ? 'active' : ''}`}
-                to="/CombinedLoginRegister"
-              >
-                Authenticate
-              </Link>
-            </li>
+          <ul className="navbar-nav ms-auto">
+            {user ? (
+              <>
+                <li className="nav-item">
+                  <Link
+                    className={`nav-link ${location.pathname === '/list-books' ? 'active' : ''}`}
+                    to="/list-books"
+                  >
+                    List Books
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className={`nav-link ${location.pathname === '/add-book' ? 'active' : ''}`}
+                    to="/add-book"
+                  >
+                    Add Book
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <button className="btn btn-link nav-link" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${location.pathname === '/CombinedLoginRegister' ? 'active' : ''}`}
+                  to="/CombinedLoginRegister"
+                >
+                  Authenticate
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
