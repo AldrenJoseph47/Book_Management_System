@@ -36,7 +36,7 @@ Ensure you have the following installed:
 ### Steps to Set Up
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/<your-username>/book-management-system.git
+   git clone https://github.com/AldrenJoseph47/book-management-system.git
    cd book-management-system
 
 
