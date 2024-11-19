@@ -8,7 +8,7 @@ A **Book Management System** built with a **Node.js backend** and a **React.js f
 
 ### General
 - Responsive frontend using **React.js** and **Bootstrap**.
-- Backend powered by **Node.js** and **Express** (without frameworks like Koa or Hapi).
+- Backend powered by **Node.js** without **Express** 
 - Secure **user authentication** with JWT and hashed passwords.
 - CRUD operations for book management (add, update, delete, list).
 - Role-based features (e.g., Admin, User) can be extended in the future.
