@@ -44,8 +44,11 @@ Ensure you have the following installed:
 book-management-system/
 │
 ├── Backend/
+
 │   ├── src/
+
 │   │   ├── config/           # Database connection
+
 │   │   ├── controllers/      # API logic for authentication and CRUD
 │   │   ├── models/           # Mongoose schemas
 │   │   ├── routes/           # Route definitions
