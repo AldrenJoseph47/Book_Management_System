@@ -41,28 +41,6 @@ Ensure you have the following installed:
 
 
 
-book-management-system/
-│
-├── Backend/
-│   ├── src/
-│   │   ├── config/           # Database connection
-│   │   ├── controllers/      # API logic for authentication and CRUD
-│   │   ├── models/           # Mongoose schemas
-│   │   ├── routes/           # Route definitions
-│   │   ├── utils/            # Helper utilities (JWT, password hashing, etc.)
-│   └── .env                  # Environment variables (not included in repo)
-│
-├── Frontend/
-│   ├── src/
-│   │   ├── components/       # Reusable components (Navbar, Footer, etc.)
-│   │   ├── pages/            # Page components (BookList, CombinedLoginRegister)
-│   │   ├── context/          # React Context API for global state
-│   └── public/               # Static files
-│
-└── README.md                 # Project documentation
-
-
-
 ### LICENSE
 This project is licensed under the MIT License. See the LICENSE file for details.
 
